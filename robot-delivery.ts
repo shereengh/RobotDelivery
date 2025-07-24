@@ -39,16 +39,16 @@ function deliverToKids(robot: Robot, kids: Kid[]) {
 deliverToKids(robot1, kidsSample);
 console.log(robot1);
 //deliver to all kids 
+function chargeRobot(robot: Robot, battery: number) {
+    robot.battery += battery;
+    console.log("Robot charged");
+}
 function deliverToAllKids(robot: Robot, kids: Kid[]) {
     if (canDeliverToKids(robot, kids)) {
         robot.battery -= 5 * kids.length;
         robot.toys -= kids.reduce((total: number, kid: Kid) => total + kid.wishlist, 0);
     } else {
-        function chargeRobot(battery: number) {
-            robot.battery += battery;
-            console.log("Robot charged");
-        }
-        chargeRobot(5 * kids.length);
+        chargeRobot(robot, 5 * kids.length);
     }
 }
 deliverToAllKids(robot1, kidsSample);
