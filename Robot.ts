@@ -68,24 +68,38 @@ function deliverToys(robot: Robot, kids: Kids) {
     console.log(`Please recharge ${robot.name} 🥹`);
   }
 }
-console.log(deliverToys(robot1, kidsSample[0]));
+//console.log(deliverToys(robot1, kidsSample[0]));
 
 function deliverToAllKids(robot: Robot, kids: Kids[]) {
-  //console.log(robot);
-  if (robot.battery >= kids.length * 5) {
-    //Can Deliver
-    robot.battery = robot.battery - kids.length * 5;
-    kids.map((kid) => (kid.wishlist = kid.wishlist - robot.toys));
-    //console.log(robot);
-    //console.log(kids);
-  } else {
+  console.log(robot);
+  console.log(kids);
+  if (robot.battery < kids.length * 5) {
     console.log(`Please recharge ${robot.name} 🥹`);
+  } else {
+    let iHaveWishList = kids.filter((kid) => kid.wishlist > 0);
+    if (iHaveWishList) {
+      robot.battery = robot.battery - kids.length * 5;
+      iHaveWishList.map((kid) => (kid.wishlist = kid.wishlist - robot.toys));
+    }
+    console.log(iHaveWishList);
+    console.log(kids);
   }
+
+  //   console.log(robot);
+  //   if (robot.battery >= kids.length * 5) {
+  //     //Can Deliver-> check WishList
+  //     robot.battery = robot.battery - kids.length * 5;
+  //     kids.map((kid) => (kid.wishlist = kid.wishlist - robot.toys));
+  //     console.log(robot);
+  //     console.log(kids);
+  //   } else {
+  //     console.log(`Please recharge ${robot.name} 🥹`);
+  //   }
 }
+deliverToAllKids(robot1, kidsSample);
 
 function getWaitingKids(kids: Kids[]): Kids[] {
-  const updatedKid = kids.filter((kid) => kid.wishlist != 0);
-  return updatedKid;
+  return kids.filter((kid) => kid.wishlist != 0);
 }
 
 function getTotalToys(robot: Robot): number {
@@ -99,7 +113,7 @@ function getTotalAllToys(robot: Robot[]): number {
 
 function getTotalToysStillNeeded(kids: Kids[]): number {
   let total = 0;
-  const updatedKid = kids
+  kids
     .filter((kid) => kid.wishlist != 0)
     .forEach((kid) => (total = total + kid.wishlist));
   return total;
@@ -108,15 +122,11 @@ function getTotalToysStillNeeded(kids: Kids[]): number {
 function deliverBasedOnLocation(robot: Robot, kids: Kids[], location: string) {
   //Capacity
   const iFound = kids.find((kid) => kid.location === location);
-  if (iFound && robot.battery >= 5) {
+  if (iFound) {
+    deliverToys(robot, iFound);
     console.log(`Toys Deliverd to ${iFound.name}`);
   } else {
-    if (!iFound) {
-      console.log(`Please check andre-enter the location ${location}`);
-    }
-    if (robot.battery < 5) {
-      console.log(`My battery is ${robot.battery}, please recharge me`);
-    }
+    console.log(`Please check andre-enter the location ${location}`);
   }
 }
-deliverBasedOnLocation(robot3, kidsSample, "Jabriya");
+console.log(deliverBasedOnLocation(robot3, kidsSample, "Jabriya"));
