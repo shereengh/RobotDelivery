@@ -7,12 +7,12 @@ Fork and clone this repo, push your code, open pull request!
 Samples to test with:
 
 ```ts
-// Sample Robots (plain objects)
+// Sample Robots
 const robot1 = { name: "RoboMax", battery: 50, toys: 10 };
 const robot2 = { name: "Tinker", battery: 20, toys: 3 };
 const robot3 = { name: "Spark", battery: 15, toys: 5 };
 
-// Sample Kids (plain objects)
+// Sample Kids 
 const kidsSample = [
   { name: "Alice", wishlist: 4 },
   { name: "Bob", wishlist: 2 },
