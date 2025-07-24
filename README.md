@@ -14,9 +14,9 @@ const robot3 = { name: "Spark", battery: 15, toys: 5 };
 
 // Sample Kids 
 const kidsSample = [
-  { name: "Alice", wishlist: 4 },
-  { name: "Bob", wishlist: 2 },
-  { name: "Charlie", wishlist: 0 },
-  { name: "Diana", wishlist: 3 },
-  { name: "Eli", wishlist: 1 },
+  { name: "Alice", wishlist: 4, location: "Jabriya" },
+  { name: "Bob", wishlist: 2, location: "Hiteen"},
+  { name: "Charlie", wishlist: 0, location: "Kifan"},
+  { name: "Diana", wishlist: 3, location: "Salmiya" },
+  { name: "Eli", wishlist: 1, location: "Sabah AlSalem"},
 ];
